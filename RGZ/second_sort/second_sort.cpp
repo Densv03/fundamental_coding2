@@ -30,30 +30,6 @@ void reheap_insert(int start, int p_i, int p_o, vector<int>& values)
 
 		while (p_i != start && p_i != start + 1)
 		{
-			//if (values[rc_i] > values[lc_i])
-			//{
-			//	if (values[rc_i] > values[p_i])
-			//	{
-			//		int temp = values[p_i];
-			//		values[p_i] = values[rc_i];
-			//		values[rc_i] = temp;
-			//		if (start + 1 != rc_i)
-			//			reheap_insert(lc_i + 1, rc_i, rc_o, values);
-			//		else
-			//			break;
-			//	}
-			//}
-			//else if (values[lc_i] > values[p_i])
-			//{
-			//	int temp = values[p_i];
-			//	values[p_i] = values[lc_i];
-			//	values[lc_i] = temp;
-			//	if (start != lc_i)
-			//		reheap_insert(start, lc_i, lc_o, values);
-			//	else
-			//		break;
-			//}
-
 			if (values[lc_i] > values[rc_i])
 			{
 				if (values[lc_i] > values[p_i])
@@ -141,7 +117,6 @@ void insert(vector<int>& value)
 		pop2.first = -1;
 		pop2.second = -1;
 
-		//0.0
 		if (sstore.size() != 0 && lco == -1)
 		{
 			pop1 = sstore.top(); sstore.pop();
@@ -169,22 +144,18 @@ void insert(vector<int>& value)
 				lci = pop1.second;
 			}
 		}
-		//1.1  1.2
 		if (lco >= 0 && rco >= 0)
 		{
 			if ((lco - rco) == 1)
 			{
 				reheap_insert((count + 1) - ln[lco + 1], count, lco + 1, value);
 
-
-				//END
 				vstore temp(++lco, count);
 				sstore.push(temp);
 				lco = -1; rco = -1;
 				lci = -1; rci = -1;
 				cond = 1;
 			}
-			//1.3
 			else
 			{
 				sstore.push(make_pair(lco, lci));
@@ -193,7 +164,6 @@ void insert(vector<int>& value)
 				cond = 2;
 			}
 		}
-		//2.1
 		else if (cond == 2)
 		{
 			if (lco == -1)
@@ -219,12 +189,11 @@ void insert(vector<int>& value)
 			}
 		}
 
-		//3.0
 		do
 		{
 			cond_check = 0;
 			vector<vstore> pairs;
-			sort_root(value); // yes = cond_test = 1;
+			sort_root(value);
 			if (cond_check == 1)
 			{
 				while (sstore.size() != 0)
@@ -279,7 +248,7 @@ void dequeue(vector<int>& value)
 			{
 				cond_check = 0;
 				vector<vstore> pairs;
-				sort_root(value); // yes = cond_test = 1;
+				sort_root(value); 
 				if (cond_check == 1)
 				{
 					while (sstore.size() != 0)
