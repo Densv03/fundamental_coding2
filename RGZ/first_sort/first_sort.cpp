@@ -2,7 +2,7 @@
 #include<ctime>
 #include<chrono>
 #include<algorithm>
-#define K 45
+#define K 10
 #define N 1000
 using namespace std;
 int A[N], A_copy[N], B[N], C[N];

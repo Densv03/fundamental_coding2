@@ -3,12 +3,13 @@
 #include <stdio.h>
 #include <iostream>
 #include <ctime>
+#include <chrono>
 #define N 40
 using namespace std;
 /* Begin user-defined types and functions */
 
 /* Type to sort (null-terminated string literals in this case) */
-typedef const char* value_t;
+typedef int value_t;
 
 /*
  * Function that returns qsort-like comparison for parameters. A negative value
@@ -22,7 +23,9 @@ static int cmp(value_t a, value_t b) {
 
  */
 static int cmp(value_t a, value_t b) {
-	return strcmp(a, b);
+	if (a > b)return 4;
+	else if (a < b)return -4;
+	else return 0;
 }
 
 /* End user-defined types and functions */
@@ -161,7 +164,7 @@ static void semitrinkle(struct state* s) {
 	}
 }
 
-void smoothsort(value_t a[], size_t n) {
+void smoothsort(value_t *a, size_t n) {
 	struct state s;
 	size_t tmp;
 
@@ -245,23 +248,25 @@ void smoothsort(value_t a[], size_t n) {
 }
 
 
-//Example main:
-
 
 int main() {
 	srand(time(0));
-	// int a[] = {
-	//	1,2,3,4,5
-	//};
-	int a[] = { 0,0,1,3 };
-	smoothsort(a, N);
-
-	for (int i = 0; i < sizeof(a) / sizeof(a[0]); i++) {
+	int arr[N + 10];
+	int* a;
+	a = arr;
+	for (int i = 0; i < N; ++i)
+		a[i] = rand() % 100 + 1;
+	cout << "Original array:" << endl;
+	for (int i = 0; i < N; ++i)
 		cout << a[i] << " ";
-	}
-
-	return 0;
+	auto start = chrono::high_resolution_clock::now();
+	smoothsort(a, N);
+	auto end = std::chrono::high_resolution_clock::now();
+	chrono::duration<double> duration = end - start;
+	double dur;
+	dur = duration.count();
+	cout << endl << "Sorted array: " << endl;
+	for (int i = 0; i < N; i++)
+		cout << a[i] << " ";
+	cout << endl << dur;
 }
-
-
- 
