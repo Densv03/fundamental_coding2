@@ -4,7 +4,9 @@
 #include <iostream>
 #include <ctime>
 #include <chrono>
-#define N 40
+#include <algorithm>
+#define N 45
+#define K 5000
 using namespace std;
 /* Begin user-defined types and functions */
 
@@ -254,19 +256,29 @@ int main() {
 	int arr[N + 10];
 	int* a;
 	a = arr;
+	double avg_dur = 0, dur[K + 10];
 	for (int i = 0; i < N; ++i)
 		a[i] = rand() % 100 + 1;
 	cout << "Original array:" << endl;
+	//sort(a, a + N);
+	//reverse(a, a + N);
 	for (int i = 0; i < N; ++i)
 		cout << a[i] << " ";
-	auto start = chrono::high_resolution_clock::now();
-	smoothsort(a, N);
-	auto end = std::chrono::high_resolution_clock::now();
-	chrono::duration<double> duration = end - start;
-	double dur;
-	dur = duration.count();
+	for (int i = 0; i < K; ++i) {
+		auto start = chrono::high_resolution_clock::now();
+		smoothsort(a, N);
+		auto end = std::chrono::high_resolution_clock::now();
+		chrono::duration<double> duration = end - start;
+
+		dur[i] = duration.count();
+	}
+	sort(dur, dur + K);
+	for (int i = 100; i < K - 100; ++i)
+		if (dur[i] > 0)avg_dur += dur[i];
 	cout << endl << "Sorted array: " << endl;
 	for (int i = 0; i < N; i++)
 		cout << a[i] << " ";
-	cout << endl << dur;
+	for (int i = 0; i < K; ++i)
+		cout << "Duration " << i + 1 << ": " << dur[i] << "s" << endl;
+	cout << endl << "Average duration: " << avg_dur / (K - 201) << "s";
 }
