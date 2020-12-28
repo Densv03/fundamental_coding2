@@ -29,8 +29,8 @@ int main() {
 	for (int j = 0; j < N; ++j) {
 		for (int l = 0; l < K; ++l)
 			A[l] = A_copy[l];
-		//sort(A, A + K);
-		//reverse(A, A + K);
+		/*sort(A, A + K);
+		reverse(A, A + K);*/
 		auto start = chrono::high_resolution_clock::now();
 		gnome_sort(A);
 		auto end = chrono::high_resolution_clock::now();
@@ -41,9 +41,9 @@ int main() {
 	for (int i = 0; i < K; ++i)
 		cout << A[i] << " ";
 	cout << endl;
-	cout << "Duration array: " << endl;
+	/*cout << "Duration array: " << endl;
 	for (int i = 0; i < N; ++i)
-		cout << "Duration " << i+1 << ": " << dur_arr[i] << "s\n";
+		cout << "Duration " << i+1 << ": " << dur_arr[i] << "s\n";*/
 	sort(dur_arr, dur_arr + N);
 	for (int i = 100; i < N - 100; ++i)
 		aver_dur += dur_arr[i];

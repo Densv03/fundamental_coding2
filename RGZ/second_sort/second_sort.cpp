@@ -6,31 +6,15 @@
 #include <chrono>
 #include <algorithm>
 #define N 45
-#define K 5000
+#define K 1000
 using namespace std;
-/* Begin user-defined types and functions */
 
-/* Type to sort (null-terminated string literals in this case) */
 typedef int value_t;
-
-/*
- * Function that returns qsort-like comparison for parameters. A negative value
- * would indicate that a goes before b, a positive value would indicate that a
- * goes after b, and zero indicates that the elements are equivalent in order.
- * An equivalent function for arithmetic types (e.g. int) would look like this:
 
 static int cmp(value_t a, value_t b) {
 	return a - b;
 }
 
- */
-static int cmp(value_t a, value_t b) {
-	if (a > b)return 4;
-	else if (a < b)return -4;
-	else return 0;
-}
-
-/* End user-defined types and functions */
 
 struct state {
 	value_t* a;
@@ -38,7 +22,7 @@ struct state {
 };
 
 #if __STDC_VERSION__ < 199901L
-#	define inline /* Silently prune inline qualifiers away for ANSI C */
+#	define inline
 #endif
 
 static inline void up(size_t* a, size_t* b) {
@@ -244,9 +228,7 @@ void smoothsort(value_t *a, size_t n) {
 
 			s.p = (s.p << 1) + 1;
 		}
-		/* element q processed */
 	}
-	/* element 0 processed */
 }
 
 
@@ -260,8 +242,8 @@ int main() {
 	for (int i = 0; i < N; ++i)
 		a[i] = rand() % 100 + 1;
 	cout << "Original array:" << endl;
-	//sort(a, a + N);
-	//reverse(a, a + N);
+	/*sort(a, a + N);
+	reverse(a, a + N);*/
 	for (int i = 0; i < N; ++i)
 		cout << a[i] << " ";
 	for (int i = 0; i < K; ++i) {
@@ -278,7 +260,7 @@ int main() {
 	cout << endl << "Sorted array: " << endl;
 	for (int i = 0; i < N; i++)
 		cout << a[i] << " ";
-	for (int i = 0; i < K; ++i)
-		cout << "Duration " << i + 1 << ": " << dur[i] << "s" << endl;
+	/*for (int i = 0; i < K; ++i)
+		cout << "Duration " << i + 1 << ": " << dur[i] << "s" << endl;*/
 	cout << endl << "Average duration: " << avg_dur / (K - 201) << "s";
 }

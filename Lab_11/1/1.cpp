@@ -1,50 +1,58 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
-#include<stdio.h>
-#include<iostream>
+﻿#include<iostream>
 #include<ctime>
-int n, A[100];
-int minimum(int k, int z[]) {
-	return z[0];
-}
+#define N 30
 using namespace std;
+int A[N];
+int mn = INT_MAX;
+int minimum(const int, int, int);
+int minimum(const int size, int k, int z[]) {
+	while (k != size) {
+		mn = (z[k] < mn) ? z[k] : mn;
+		//cout << mn << endl;
+		return minimum(size, k + 1, A);
+	}
+	return mn;
+}
 int main() {
 	srand(time(0));
-	printf("Do you want to enter array by youseflf? Enter either 1 or 0 (yes or no respectively): ");
+	const int size = rand() % 10 + 1;
+	cout << "Array size> " << size << endl;
+	cout << "Do you want to enter array by keyboard? (Enter 1 or 0 respectively): ";
 	int checker;
-	scanf("%d", &checker);
+	cin >> checker;
 	while (checker != 0 && checker != 1) {
-		printf("You've entered incorrect number. Try again: ");
-		scanf("%d", &checker);
+		cout << "You've entered incorrect value. Try again: ";
+		cin >> checker;
 	}
 	if (checker == 1) {
-		printf("Enter array size: ");
-		scanf("%d", &n);
-		printf("Enter elements of array: ");
-		for (int i = 0; i < n; ++i)
-			scanf("%d", A[i]);
+		cout << "Enter " << size << " elements: " << endl;
+		for (int i = 0; i < size; ++i)
+			cin >> A[i];
 	}
 	else {
-		printf("Do you want to enter array size? Enter either 1 or 0 (yes or no respectively): ");
-		int checker1;
-		scanf("%d", &checker1);
-		while (checker1 != 1 && checker1 != 0) {
-			printf("You've entered incorrect data. Try again: ");
-			scanf("%d", &checker1);
-		}
-		if (checker1 == 1) {
-			printf("Enter array size: ");
-			scanf("%d", &n);
-			for (int i = 0; i < n; ++i)
-				A[i] = rand() % 15 + 1;
-		}
-		else {
-			n = rand() % 10 + 1;
-			for (int i = 0; i < n; ++i)
-				A[i] = rand() % 15 + 1;
-		}
-		printf("Original array:\n");
-		for (int i = 0; i < n; ++i)
-			printf("%d ", A[i]);
+		for (int i = 0; i < size; ++i)
+			A[i] = rand() % 10;
+		cout << "Array> ";
+		for (int i = 0; i < size; ++i)
+			cout << A[i] << " ";
+		cout << endl;
 	}
-	cout << '\n' << '\n' << minimum(n, A);
+	cout << "Do you want to enter start point for searching mininum value? (Enter 1 or 0 respectively): ";
+	cin >> checker;
+	while (checker != 1 && checker != 0) {
+		cout << "You've entered incorrect value. Try again: ";
+		cin >> checker;
+	}
+	int k;
+	if (checker == 1) {
+		cout << "Enter value: ";
+		cin >> k;
+	}
+	else {
+		k = rand() % 10 + 1;
+		while (k > size - 1)
+			k = rand() % 10 + 1;
+		cout << "Start point> " << k + 1 << endl;
+	}
+	cout << minimum(size, k, A);
 }
