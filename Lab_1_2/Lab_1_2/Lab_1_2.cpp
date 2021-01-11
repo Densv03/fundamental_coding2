@@ -6,6 +6,8 @@
 #include<stdio.h>
 #include<ctime>
 #include<utility>
+#include<vector>
+#include<array>
 
 #define N 30
 #define str_sz 15
@@ -21,6 +23,7 @@ float viscosities[str_sz] = { 1.2,0.8,4.0,3.2,3.3,2.9,2.1,1.7 };
 
 locale rus("rus_rus.866");
 
+
 struct element{
 	char name[str_sz];
 	int num, temperature;
@@ -28,49 +31,56 @@ struct element{
 };
 struct element el[N], x;
 
+void random_filling(element);
+void keyboard_filling(element);
+void outputting(element, int);
+void sorting(element, int);
+
 void random_filling(element* el) {
 	srand(time(0));
-	int size = rand() % 8 + 1;
-	cout << size << endl;
+	int size = rand() % 7 + 1;
+	cout << "Количество элементов: " << size << endl;
 	pair<int, bool>mean[str_sz];
 	for (int i = 0; i < size; ++i) {
 		mean[i].first = i;
 		mean[i].second = false;
 	}
 	for (int h = 0; h < size; ++h) {
-		int r = rand() % 8;
-		if (!mean[r].second) {
-			mean[r].second = true;
-			char temp[str_sz];
-			for (int i = 0; i < elements[r].size(); ++i)
-				temp[i] = elements[r][i];
-			strcpy(el[h].name, temp);
-			el[h].num = nums[r];
-			el[h].temperature = temperatures[r];
-			el[h].viscosity = viscosities[r];
-			cout << elements[r] << " " << nums[r] << " " << temperatures[r] << " " << viscosities[r] << endl;
-		}
-		else {
-			int i = 0;
-			while (mean[i].second)
-				++i;
-		}
+		int r;
+		r = rand() % 8;
+		while (mean[r].second)
+			r = rand() % 8;
+		mean[r].second = true;
+		char temp[str_sz];
+		for (int i = 0; i < str_sz; ++i)
+			temp[i] = '\0';
+		string ss;
+		ss.clear();
+		int str_size = elements[r].size();
+		ss = elements[r];
+		for (int i = 0; i < str_size; ++i)
+			temp[i] = ss[i];
+		ss.clear();
+		strcpy(el[h].name, temp);
+		el[h].num = nums[r];
+		el[h].temperature = temperatures[r];
+		el[h].viscosity = viscosities[r];
 	}
-	for (int i = 0; i < size; ++i)
-		printf("| %9s | %-16d| %-22d| %-22.2f|\n", el[i].name, el[i].num, el[i].temperature, el[i].viscosity);
-
 	cout << "Структура заполнена" << endl;
+	sz = size;
 }
 
 void keyboard_filling(element* el) {
+	int size = 0;
 	for (int i = 0; i < 10; ++i) {
 		cout << i + 1 << ". Введите вещество, атомный номер, температуру (град.С) и вязкость (кг/м*сек)> ";
 
 		cin >> el[i].name;
 		if (!strcmp(el[i].name, "***")) break;
 		cin >> el[i].num >> el[i].temperature >> el[i].viscosity;
-		sz++;
+		size;
 	}
+	sz = size;
 }
 
 void outputting(element* el, int size) {
@@ -108,6 +118,7 @@ void sorting(element* el, int size) {
 			el[mn].viscosity = x.viscosity;
 		}
 	}
+	cout << endl << "Структура отсортирована" << endl << endl;
 }
 
 int main() {
@@ -123,11 +134,12 @@ int main() {
 		cout << "2. Заполнение структуры с клавиатуры"<<endl;
 		cout << "3. Вывести структуру" << endl;
 		cout << "4. Отсортировать структуру" << endl;
+		cout << "5. Очистить консоль" << endl;
 		cout << "Для выхода из программы введите 0" << endl << "> ";
 
 		cin >> checker;
 
-		if (checker < 0 || checker>4) {
+		if (checker < 0 || checker>5) {
 			cout << "Введено неверное значение. Попробуйте ещё раз: ";
 			continue;
 		}
@@ -139,11 +151,11 @@ int main() {
 			random_filling(el);
 		else if (checker == 2)
 			keyboard_filling(el);
-		if (checker == 3)
+		else if (checker == 3)
 			outputting(el, sz);
-		else if (checker == 4) {
+		else if (checker == 4)
 			sorting(el, sz);
-			cout << endl << "Структура отсортирована" << endl << endl;
-		}
+		else if (checker == 5)
+			system("cls");
 	}
 }
