@@ -78,7 +78,7 @@ void keyboard_filling(element* el) {
 		cin >> el[i].name;
 		if (!strcmp(el[i].name, "***")) break;
 		cin >> el[i].num >> el[i].temperature >> el[i].viscosity;
-		size;
+		size++;
 	}
 	sz = size;
 }
