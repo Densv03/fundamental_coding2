@@ -19,7 +19,7 @@ void outputting(element* el, int size) {
 		cout << "today is: " << ctime(&tt) << __FUNCTION__ << endl;
 		activated = true;
 	}
-#endif // DEBUG
+#endif
 
 	printf("-------------------------------------------------------------------------------\n");
 	printf("| ¬€зкость металлов в жидком состо€нии                                        |\n");
@@ -36,5 +36,5 @@ void outputting(element* el, int size) {
 #ifdef DEBUG
 	if (activated)
 		cout << "DEBUG is defined" << endl << endl;
-#endif // DEBUG
+#endif
 }

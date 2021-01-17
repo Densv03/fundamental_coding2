@@ -19,7 +19,7 @@ void sorting(element* el, int size) {
 		cout << "today is: " << ctime(&tt) << __FUNCTION__ << endl;
 		activated = true;
 	}
-#endif // DEBUG
+#endif
 
 	int mn = 0, j = 0, i = 0;
 	for (int i = 0; i < size; ++i) {
@@ -45,5 +45,5 @@ void sorting(element* el, int size) {
 #ifdef DEBUG
 	if (activated)
 		cout << endl << "DEBUG is defined" << endl << endl;
-#endif // DEBUG
+#endif
 }

@@ -32,7 +32,7 @@ void struct_filling(element* el) {
 		activated = true;
 	}
 	cout << __FILE__ << endl << endl;
-#endif // DEBUG
+#endif
 
 #if PRINT_TYPE==1
 	int size = 0;
@@ -81,5 +81,5 @@ void struct_filling(element* el) {
 #ifdef DEBUG
 	if (activated)
 		cout << endl << "DEBUG is defined" << endl << endl;
-#endif // DEBUG
+#endif
 }
