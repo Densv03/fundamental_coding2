@@ -18,16 +18,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="keyboard_filling.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="random_filling.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="outputting.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="sorting.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="struct_filling.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

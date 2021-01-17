@@ -139,11 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="keyboard_filling.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="outputting.cpp" />
-    <ClCompile Include="random_filling.cpp" />
     <ClCompile Include="sorting.cpp" />
+    <ClCompile Include="struct_filling.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="head_file.h" />

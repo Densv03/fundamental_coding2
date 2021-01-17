@@ -13,15 +13,18 @@ using namespace std;
 int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	int checker;
+	int checker = 0;
 	while (true) {
 		cout << "Выберите действие: " << endl;
-		cout << "1. Заполнение структуры случайным образом" << endl;
-		cout << "2. Заполнение структуры с клавиатуры" << endl;
-		cout << "3. Вывести структуру" << endl;
-		cout << "4. Отсортировать структуру" << endl;
-		cout << "5. Очистить консоль" << endl;
-		cout << "Для выхода из программы введите 0" << endl << "> ";
+		/*cout << "1. Заполнение структуры случайным образом" << endl;
+		cout << "2. Заполнение структуры с клавиатуры" << endl;*/
+		cout << "1. Заполнить структуру" << endl;
+		cout << "2. Вывести структуру" << endl;
+		cout << "3. Отсортировать структуру" << endl;
+		cout << "4. Очистить консоль" << endl;
+		cout << "Для выхода из программы введите 0" << endl;
+
+		cout << "> ";
 
 		cin >> checker;
 
@@ -29,19 +32,17 @@ int main() {
 			cout << "Введено неверное значение. Попробуйте ещё раз: ";
 			continue;
 		}
-
+		/*else if (checker == 2)
+			keyboard_filling(el);*/
 		if (checker == 0)
 			return 0;
-
 		if (checker == 1)
-			random_filling(el);
-		else if (checker == 2)
-			keyboard_filling(el);
-		else if (checker == 3)
+			struct_filling(el);
+		if (checker == 2)
 			outputting(el, sz);
-		else if (checker == 4)
+		else if (checker == 3)
 			sorting(el, sz);
-		else if (checker == 5)
+		else if (checker == 4)
 			system("cls");
 	}
 }
