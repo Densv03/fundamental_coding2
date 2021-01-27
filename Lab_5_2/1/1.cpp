@@ -96,5 +96,6 @@ int main() {
 			cout << setw(dights(n * n)) << A[i * n + j + 1] << " ";
 		cout << endl;
 	}
+	delete[]A;
 #endif
 }
