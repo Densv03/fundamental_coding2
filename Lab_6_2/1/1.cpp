@@ -83,34 +83,19 @@ int main() {
 		cout << "Символ который будет искаться: " << endl << "> ";
 		cout << l;
 	}
-	int k = 0;
-	bool find = true;
-	while (s[k] != l) {
-		if (k == s.size()) {
-			cout << "Заданого символа не найдено" << endl;
-			break;
-			find = false;
+	int check = 0;
+	for (int i = 0; i < s.size(); ++i)
+		if (s[i] == l) {
+			s.erase(i, 1);
+			check++;
 		}
-		if (s[k] == l) {
-			s.erase(k, 1);
-			cout << "Символ был удален" << endl;
-			break;
-		}
-		k++;
-	}
-	k = s.size() - 1;
-	if (find)
-		while (s[k] != l) {
-			if (k == 0) {
-				cout << "Заданого символа не найдено" << endl;
-				break;
+	if (check)
+		for (int i = s.size() - 1; i >= 0; i--)
+			if (s[i] == l) {
+				s.erase(i, 1);
+				check++;
 			}
-			if (s[k] == l) {
-				s.erase(k, 1);
-				cout << "Символ был удален" << endl;
-				break;
-			}
-			k--;
-		}
+	if (check == 1)
+		cout << "Не удалось удалить элемент с конца" << endl;
 	cout << "Оставшаяся строка:" << endl << "> " << s;
 }
