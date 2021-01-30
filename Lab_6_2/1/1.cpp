@@ -1,7 +1,30 @@
 ﻿#include<iostream>
 #include<Windows.h>
 #include<ctime>
-#include"head.h"
+#include<cstring>
+
+char symbol();
+
+char symbol() {
+	srand(time(0));
+	int section = rand() % 4 + 1;
+	if (section == 1) {
+		int el = rand() % 10;
+		el += 48;
+		return (char)el;
+	}
+	else if (section == 2) {
+		int el = rand() % 26;
+		el += 65;
+		return (char)el;
+	}
+	else {
+		int el = rand() % 26;
+		el += 97;
+		return (char)el;
+	}
+}
+
 using namespace std;
 int main() {
 	SetConsoleCP(1251);
@@ -25,8 +48,22 @@ int main() {
 		int sz = rand() % 15 + 1;
 		cout << "Размер строки: " << endl << "> " << sz << endl;
 		for (int i = 0; i < sz; ++i) {
-			char temp = symbol();
-			s += temp;
+			int section = rand() % 4 + 1;
+			if (section == 1) {
+				int el = rand() % 10;
+				el += 48;
+				s += (char)el;
+			}
+			else if (section == 2) {
+				int el = rand() % 26;
+				el += 65;
+				s += (char)el;
+			}
+			else {
+				int el = rand() % 26;
+				el += 97;
+				s += (char)el;
+			}
 		}
 		cout << "Строка: " << endl << "> " << s << endl;
 	}
@@ -43,6 +80,37 @@ int main() {
 	}
 	else {
 		l = symbol();
+		cout << "Символ который будет искаться: " << endl << "> ";
+		cout << l;
 	}
-	cout << l;
+	int k = 0;
+	bool find = true;
+	while (s[k] != l) {
+		if (k == s.size()) {
+			cout << "Заданого символа не найдено" << endl;
+			break;
+			find = false;
+		}
+		if (s[k] == l) {
+			s.erase(k, 1);
+			cout << "Символ был удален" << endl;
+			break;
+		}
+		k++;
+	}
+	k = s.size() - 1;
+	if (find)
+		while (s[k] != l) {
+			if (k == 0) {
+				cout << "Заданого символа не найдено" << endl;
+				break;
+			}
+			if (s[k] == l) {
+				s.erase(k, 1);
+				cout << "Символ был удален" << endl;
+				break;
+			}
+			k--;
+		}
+	cout << "Оставшаяся строка:" << endl << "> " << s;
 }
