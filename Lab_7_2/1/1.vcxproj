@@ -140,6 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="1.cpp" />
+    <ClCompile Include="add_to_begin.cpp" />
+    <ClCompile Include="add_to_end.cpp" />
+    <ClCompile Include="all_out.cpp" />
+    <ClCompile Include="clean.cpp" />
+    <ClCompile Include="keyboard_filling.cpp" />
+    <ClCompile Include="out_str.cpp" />
+    <ClCompile Include="random_filling.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="head.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

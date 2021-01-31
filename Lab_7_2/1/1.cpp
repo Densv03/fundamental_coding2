@@ -1,23 +1,6 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
-#include<iostream>
-#include<ctime>
-#include<fstream>
-#include<Windows.h>
-#include<cstring>
-#include<string>
-#include<clocale>
-#include<stdio.h>
-
-#define str_sz 15
-#define n 10
+﻿#include"head.h"
 
 using namespace std;
-
-struct element {
-	char name[str_sz];
-	int num, temperature;
-	float viscosity;
-};
 
 string elements[str_sz] = { "Медь","Золото","Вольфрам","Серебро","Ртуть","Алюминий","Свинец","Висмут" };
 int nums[str_sz] = { 29,79,74,47,80,13,82,83 };
@@ -27,9 +10,9 @@ float viscosities[str_sz] = { 1.2,0.8,4.0,3.2,3.3,2.9,2.1,1.7 };
 locale rus("rus_rus.866");
 
 int main() {
+	element temp;
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	element temp;
 	srand(time(0));
 	while (true) {
 		cout << "1. Ввод с экрана и запись в файл" << endl;
@@ -47,124 +30,17 @@ int main() {
 			cout << "Введено некорректное значение. Попробуйте ещё раз: ";
 			cin >> action;
 		}
-		if (action == 1) {
-			for (int i = 0; i < n; ++i) {
-				cout << i + 1 << ". Введите вещество, атомный номер, температуру (град.С) и вязкость (кг/м*сек)> ";
-				cin >> temp.name;
-				if (!strcmp(temp.name, "***"))
-					break;
-				cin >> temp.num >> temp.temperature >> temp.viscosity;
-
-				// For cleaning file when command'll be called more than one time
-				if (!i)
-					ofstream fout("text.txt");
-				ofstream fout("text.txt", ios_base::app);
-				fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
-				fout.close();
-			}
-		}
-		else if (action == 2) {
-			int size = rand() % 7 + 1;
-			cout << endl << "Количество элементов: " << size << endl << endl;
-			pair<int, bool>mean[str_sz];
-
-			// For random
-			for (int i = 0; i < size; ++i) {
-				mean[i].first = i;
-				mean[i].second = false;
-			}
-			for (int h = 0; h < size; ++h) {
-				int r;
-				r = rand() % 8;
-				while (mean[r].second)
-					r = rand() % 8;
-				mean[r].second = true;
-				// Random part ended
-
-				char t[str_sz];
-				for (int i = 0; i < str_sz; ++i)
-					t[i] = '\0';
-				// Cleaning array
-
-				string ss;
-				ss.clear();
-				int str_size = elements[r].size();
-				ss = elements[r];
-				// Temp string
-				for (int i = 0; i < str_size; ++i)
-					t[i] = ss[i];
-				ss.clear();
-				strcpy(temp.name, t);
-				temp.num = nums[r];
-				temp.temperature = temperatures[r];
-				temp.viscosity = viscosities[r];
-				if (!h)
-					ofstream fout("text.txt");
-				ofstream fout("text.txt", ios_base::app);
-				fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
-				fout.close();
-			}
-		}
-		else if (action == 3) {
-			string s;
-			int size = 0;
-			cout << "Введите вещество, атомный номер, температуру (град.С) и вязкость (кг/м*сек)> ";
-			cin >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
-
-			// Enter meaning to temp .txt file
-			ofstream fout("temp-text.txt");
-			fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
-			fout.close();
-
-			// Size counting
-			ifstream file("text.txt");
-			if (!file.is_open())
-				cout << "Не удалось открыть файл text.txt";
-			while (!file.eof()) {
-				getline(file, s);
-				size++;
-			}
-			file.close();
-			size--;
-			int counter = 0;
-			for (int i = 1; i <= size; ++i) {
-				ifstream file("text.txt");
-
-				// Counting place for pointer to read inf
-				for (int j = 0; j < i - 1; ++j)
-					getline(file, s);
-				file >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
-				file.close();
-				ofstream fout("temp-text.txt", ios_base::app);
-				fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
-				fout.close();
-			}
-			size++;
-
-			// Copying temp-text.txt to text.txt
-			for (int i = 1; i <= size; ++i) {
-				ifstream file("temp-text.txt");
-				for (int j = 0; j < i - 1; ++j)
-					getline(file, s);
-				file >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
-				file.close();
-				if (i == 1)
-					ofstream fout("text.txt");
-				ofstream fout("text.txt", ios_base::app);
-				fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
-			}
-			remove("temp-text.txt");
-		}
-		else if (action == 4) {
-			cout << "Введите вещество, атомный номер, температуру (град.С) и вязкость (кг/м*сек)> ";
-			cin >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
-			ofstream fout("text.txt", ios_base::app);
-			fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
-			fout.close();
-		}
+		if (action == 1)
+			keyboard_filling();
+		else if (action == 2)
+			random_filling();
+		else if (action == 3)
+			add_to_begin();
+		else if (action == 4)
+		add_to_the_end();
 		else if (action == 5) {
 			cout << "Введите номер строки которую хотите получить: ";
-			int size, sz=0;
+			int sz = 0, size;
 			string s;
 			cin >> size;
 			ifstream file("text.txt");
@@ -175,30 +51,14 @@ int main() {
 				cin >> size;
 			}
 			file.close();
-			ifstream f("text.txt");
-			for (int i = 0; i < size - 1; ++i)
-				getline(f, s);
-			f >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
-			f.close();
-			cout << endl << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl << endl;
+			out_str(size);
 		}
 		else if (action == 6) {
-			int size = 0;
-			string s;
-			ifstream file("text.txt");
-			while (getline(file, s))
-				size++;
-			file.close();
-			ifstream f("text.txt");
-			for (int i = 0; i < size; ++i) {
-				f >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
-				cout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
-			}
-			f.close();
+			all_out();
 		}
 		else if (action == 7)
 			return 0;
 		else if (action == 8)
-			system("cls");
+			cleaning();
 	}
 }
