@@ -6,6 +6,7 @@
 #include<cstring>
 #include<string>
 #include<clocale>
+#include<stdio.h>
 
 #define str_sz 15
 #define n 10
@@ -109,10 +110,16 @@ int main() {
 			int size = 0;
 			cout << "Введите вещество, атомный номер, температуру (град.С) и вязкость (кг/м*сек)> ";
 			cin >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
+
+			// Enter meaning to temp .txt file
 			ofstream fout("temp-text.txt");
 			fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
 			fout.close();
+
+			// Size counting
 			ifstream file("text.txt");
+			if (!file.is_open())
+				cout << "Не удалось открыть файл text.txt";
 			while (!file.eof()) {
 				getline(file, s);
 				size++;
@@ -122,15 +129,72 @@ int main() {
 			int counter = 0;
 			for (int i = 1; i <= size; ++i) {
 				ifstream file("text.txt");
+
+				// Counting place for pointer to read inf
 				for (int j = 0; j < i - 1; ++j)
 					getline(file, s);
 				file >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
 				file.close();
-				ofstream fout("temp-text.txt",ios_base::app);
+				ofstream fout("temp-text.txt", ios_base::app);
 				fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
 				fout.close();
 			}
+			size++;
 
+			// Copying temp-text.txt to text.txt
+			for (int i = 1; i <= size; ++i) {
+				ifstream file("temp-text.txt");
+				for (int j = 0; j < i - 1; ++j)
+					getline(file, s);
+				file >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
+				file.close();
+				if (i == 1)
+					ofstream fout("text.txt");
+				ofstream fout("text.txt", ios_base::app);
+				fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
+			}
+			remove("temp-text.txt");
+		}
+		else if (action == 4) {
+			cout << "Введите вещество, атомный номер, температуру (град.С) и вязкость (кг/м*сек)> ";
+			cin >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
+			ofstream fout("text.txt", ios_base::app);
+			fout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
+			fout.close();
+		}
+		else if (action == 5) {
+			cout << "Введите номер строки которую хотите получить: ";
+			int size, sz=0;
+			string s;
+			cin >> size;
+			ifstream file("text.txt");
+			while (getline(file, s))
+				sz++;
+			while (size > sz || size < 0) {
+				cout << "Введено некорректное значение. Попробуйте ещё раз. (количество строк в файле - " << sz << "): ";
+				cin >> size;
+			}
+			file.close();
+			ifstream f("text.txt");
+			for (int i = 0; i < size - 1; ++i)
+				getline(f, s);
+			f >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
+			f.close();
+			cout << endl << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl << endl;
+		}
+		else if (action == 6) {
+			int size = 0;
+			string s;
+			ifstream file("text.txt");
+			while (getline(file, s))
+				size++;
+			file.close();
+			ifstream f("text.txt");
+			for (int i = 0; i < size; ++i) {
+				f >> temp.name >> temp.num >> temp.temperature >> temp.viscosity;
+				cout << temp.name << " " << temp.num << " " << temp.temperature << " " << temp.viscosity << endl;
+			}
+			f.close();
 		}
 		else if (action == 7)
 			return 0;
