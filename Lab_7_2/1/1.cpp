@@ -7,12 +7,10 @@ int nums[str_sz] = { 29,79,74,47,80,13,82,83 };
 int temperatures[str_sz] = { 1085,1064,3422,962,-39,660,328,271 };
 float viscosities[str_sz] = { 1.2,0.8,4.0,3.2,3.3,2.9,2.1,1.7 };
 
-locale rus("rus_rus.866");
-
 int main() {
-	element temp;
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+	element temp;
 	srand(time(0));
 	while (true) {
 		cout << "1. Ввод с экрана и запись в файл" << endl;

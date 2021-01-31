@@ -5,6 +5,8 @@ extern int nums[str_sz];
 extern int temperatures[str_sz];
 extern float viscosities[str_sz];
 void random_filling() {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	srand(time(0));
 	element temp;
 	int size = rand() % 7 + 1;

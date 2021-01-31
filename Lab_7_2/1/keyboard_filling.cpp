@@ -1,6 +1,8 @@
 #include"head.h"
 using namespace std;
 void keyboard_filling() {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	element temp;
 	for (int i = 0; i < n; ++i) {
 		cout << i + 1 << ". Введите вещество, атомный номер, температуру (град.С) и вязкость (кг/м*сек)> ";

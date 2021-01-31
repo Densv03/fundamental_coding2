@@ -1,6 +1,8 @@
 #include"head.h"
 using namespace std;
 void add_to_begin() {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	element temp;
 	string s;
 	int size = 0;
