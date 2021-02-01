@@ -1,5 +1,4 @@
 #include"head.h"
-using namespace std;
 void all_out() {
 	element temp;
 	int size = 0;

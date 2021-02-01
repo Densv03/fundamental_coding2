@@ -1,5 +1,4 @@
 #include"head.h"
-using namespace std;
 void keyboard_filling() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);

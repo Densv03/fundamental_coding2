@@ -1,5 +1,4 @@
 #include"head.h"
-using namespace std;
 extern string elements[str_sz];
 extern int nums[str_sz];
 extern int temperatures[str_sz];

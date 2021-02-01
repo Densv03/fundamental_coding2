@@ -1,5 +1,4 @@
 #include"head.h"
-using namespace std;
 void add_to_the_end() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);

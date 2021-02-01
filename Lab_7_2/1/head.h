@@ -9,7 +9,7 @@
 #include<string>
 #include<clocale>
 #include<stdio.h>
-locale rus("rus_rus.866");
+using namespace std;
 void keyboard_filling();
 void random_filling();
 void add_to_begin();

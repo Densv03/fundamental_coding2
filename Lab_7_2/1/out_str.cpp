@@ -1,5 +1,4 @@
 #include"head.h"
-using namespace std;
 void out_str(int size) {
 	element temp;
 	string s;

@@ -1,7 +1,5 @@
 ﻿#include"head.h"
 
-using namespace std;
-
 string elements[str_sz] = { "Медь","Золото","Вольфрам","Серебро","Ртуть","Алюминий","Свинец","Висмут" };
 int nums[str_sz] = { 29,79,74,47,80,13,82,83 };
 int temperatures[str_sz] = { 1085,1064,3422,962,-39,660,328,271 };
