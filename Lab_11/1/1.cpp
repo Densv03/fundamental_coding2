@@ -6,7 +6,7 @@ int A[N];
 int mn = INT_MAX;
 int minimum(const int, int, int);
 int minimum(const int size, int k, int z[]) {
-	while (k != size) {
+	if (k != size) {
 		mn = (z[k] < mn) ? z[k] : mn;
 		//cout << mn << endl;
 		return minimum(size, k + 1, A);
