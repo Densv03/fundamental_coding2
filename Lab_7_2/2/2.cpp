@@ -20,6 +20,15 @@ int main() {
 	pfile = fopen("f1.txt", "r");
 	for (int i = 0; i < N; ++i)
 		fscanf(pfile, "%d", &mas2[i]);
+	fclose(pfile);
+	pfile = fopen("f2.txt", "w");
 	for (int i = 0; i < N; ++i)
-		cout << mas2[i] << " ";
+		fprintf(pfile, "%d ", mas2[i]);
+	fclose(pfile);
+	pfile = fopen("f2.txt", "r");
+	int x;
+	for (int i = 0; i < N; ++i) {
+		fscanf(pfile, "%d", &x);
+		cout << x << " ";
+	}
 }
