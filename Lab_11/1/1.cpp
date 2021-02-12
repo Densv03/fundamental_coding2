@@ -4,21 +4,32 @@
 using namespace std;
 int A[N];
 int mn = INT_MAX;
-int minimum(const int, int, int);
-int minimum(const int size, int k, int z[]) {
+int minimum(int, int, int);
+int minimum(int size, int k, int z[]) {
 	if (k != size) {
 		mn = (z[k] < mn) ? z[k] : mn;
-		//cout << mn << endl;
 		return minimum(size, k + 1, A);
 	}
 	return mn;
 }
 int main() {
 	srand(time(0));
-	const int size = rand() % 10 + 1;
-	cout << "Array size> " << size << endl;
+	int size, checker;
+	cout << "Do you want to enter array size? (Enter 1 or 0 respectively): ";
+	cin >> checker;
+	while (checker != 0 && checker != 1) {
+		cout << "You've entered incorrect value. Try again: ";
+		cin >> checker;
+	}
+	if (checker) {
+		cout << "Enter array size: ";
+		cin >> size;
+	}
+	else {
+		size = rand() % 15 + 2;
+		cout << "Array size> " << size << endl;
+	}
 	cout << "Do you want to enter array by keyboard? (Enter 1 or 0 respectively): ";
-	int checker;
 	cin >> checker;
 	while (checker != 0 && checker != 1) {
 		cout << "You've entered incorrect value. Try again: ";
@@ -47,6 +58,12 @@ int main() {
 	if (checker == 1) {
 		cout << "Enter value: ";
 		cin >> k;
+		while (k<1 || k>size) {
+			cout << "You've entered incorrect value. Try again: ";
+			cin >> k;
+		}
+		if (k == size)
+			return cout << "Min value: " << A[k - 1], 0;
 	}
 	else {
 		k = rand() % 10 + 1;
@@ -54,5 +71,5 @@ int main() {
 			k = rand() % 10 + 1;
 		cout << "Start point> " << k + 1 << endl;
 	}
-	cout << minimum(size, k, A);
+	cout << "Min element: " << minimum(size, k - 1, A);
 }

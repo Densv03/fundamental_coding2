@@ -23,7 +23,6 @@ float viscosities[str_sz] = { 1.2,0.8,4.0,3.2,3.3,2.9,2.1,1.7 };
 
 locale rus("rus_rus.866");
 
-
 struct element{
 	char name[str_sz];
 	int num, temperature;
@@ -146,7 +145,6 @@ int main() {
 
 		if (checker == 0)
 			return 0;
-
 		if (checker == 1)
 			random_filling(el);
 		else if (checker == 2)

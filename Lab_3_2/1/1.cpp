@@ -57,5 +57,5 @@ int main() {
 	cout << "Всего подходящих чисел: " << func(A, n)<<endl;
 	cout << "Второй массив положительных четных чисел и их индексы:" << endl;
 	for (int i = 0; i < even; ++i)
-		cout << "Число: " << setw(3) << B[i].first << " " << "Индекс: " << setw(2) << B[i].second << endl;
+		cout << "Число: " << setw(3) << B[i].first << " " << "Индекс: " << setw(2) << B[i].second+1 << endl;
 }

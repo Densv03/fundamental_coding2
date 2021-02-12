@@ -6,10 +6,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "head_file.h"
-// PRINT_TYPE == 1 -> keyboard filling
-// PRINT_TYPE == 2 -> random filling
-#define PRINT_TYPE 1
-#define DEBUG 1
+/*
+PRINT_TYPE == 1 -> keyboard filling
+PRINT_TYPE == 2 -> random filling
+*/
+#define PRINT_TYPE 2
+//#define DEBUG 1
 #define N 30
 #define str_sz 15
 using namespace std;
