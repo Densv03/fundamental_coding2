@@ -27,13 +27,14 @@ int main() {
 		cout << "Размер массива: " << '\n' << "> " << size;
 	}
 	int* A = new int[size];
+
 	int* B = new int[size];
 	filling(A, size);
 	cout << '\n';
 	cout << "Элементы массива: " << '\n' << "> ";
 	for (int i = 0; i < size; ++i)
 		cout << A[i] << " ";
-	cout<<endl << "Количество элементов, которые меньше предыдущего но больше последующего: " << '\n' << "> " << processing(A, B, size) << '\n';
+	//cout<<endl << "Количество элементов, которые меньше предыдущего но больше последующего: " << '\n' << "> " << processing(A, B, size) << '\n';
 	extern int k, * positions, j;
 	//for (int i = 0; i < j; ++i)
 	//	cout << positions[i] << " ";

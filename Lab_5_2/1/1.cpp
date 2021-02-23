@@ -1,8 +1,13 @@
 ﻿#include<iostream>
-#include<Windows.h>
+#include<clocale>
 #include<iomanip>
+#include<Windows.h>
 #include"head.h"
 using namespace std;
+/*
+TYPE==1 -> работа с двумерным массивом как с двумерным
+TYPE==2 -> работа с двумерным массивом как с одномерным
+*/
 #define TYPE 2
 int main() {
 	SetConsoleCP(1251);
@@ -11,89 +16,24 @@ int main() {
 	cout << "Введите размер массива: ";
 	cin >> n;
 #if TYPE==1
-	int** A;
-	A = new int* [n];
-	for (int i = 0; i < n; ++i)
-		A[i] = new int[n];
-	if (n % 2)A[n / 2][n / 2] = n * n;
-	// General cycle
-	for (int h = 0; h < n / 2; ++h) {
-		// Filling in left side
-
-		for (int i = shift; i < n - shift; ++i) {
-			int j = shift;
-			A[i][j] = counter;
-			counter++;
-		}
-		// Filling in bottom
-
-		int i = n - shift - 1;
-		for (int j = shift + 1; j < n - shift; ++j) {
-			A[i][j] = counter;
-			counter++;
-		}
-		// Filling in right side
-
-		int j = n - shift - 1;
-		for (int i = n - shift - 2; i >= shift; --i) {
-			A[i][j] = counter;
-			counter++;
-		}
-		// Filling in top side
-
-		i = shift;
-		for (j = n - shift - 2; j >= shift + 1; j--) {
-			A[i][j] = counter;
-			counter++;
-		}
-		shift++;
-	}
+	int** one_ans;
+	one_ans = new int* [n];
+	one_ans = one_dimensional_arr(n);
+	
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < n; ++j)
-			cout << setw(dights(n * n)) << A[i][j] << " ";
+			cout << setw(dights(n * n)) << one_ans[i][j] << " ";
 		cout << endl;
 	}
 	for (int i = 0; i < n; ++i)
-		delete[]A[i];
-	delete[]A;
+		delete[]one_ans[i];
+	delete[]one_ans;
 #else
-	int* A = new int[n * n];
-	if (n % 2)
-		A[((n / 2) * n) + ((n / 2) + 1)] = n * n;
-	for (int h = 0; h < n / 2; ++h) {
-		// Filling in left side
-
-		for (int i = shift; i < n - shift; ++i) {
-			int j = shift;
-			A[i * n + j + 1] = counter;
-			counter++;
-		}
-		// Filling in bottom
-
-		int i = n - shift - 1;
-		for (int j = shift + 1; j < n - shift; ++j) {
-			A[i * n + j + 1] = counter;
-			counter++;
-		}
-		// Filling in right side
-
-		int j = n - shift - 1;
-		for (int i = n - shift - 2; i >= shift; --i) {
-			A[i * n + j + 1] = counter;
-			counter++;
-		}
-		// Filling in top side
-
-		i = shift;
-		for (j = n - shift - 2; j >= shift + 1; j--) {
-			A[i * n + j + 1] = counter;
-			counter++;
-		}
-		shift++;
-	}
+	int* two_ans = new int[n * n];
+	two_ans = two_dimensional_arr(n);
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < n; ++j)
-			cout << setw(dights(n * n)) << A[i * n + j + 1] << " ";
+			cout << setw(dights(n * n)) << two_ans[i * n + j + 1] << " ";
 		cout << endl;
 	}
 #endif
