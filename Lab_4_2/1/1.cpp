@@ -34,14 +34,7 @@ int main() {
 	for (int i = 0; i < size; ++i)
 		cout << A[i] << " ";
 	cout<<endl << "Количество элементов, которые меньше предыдущего но больше последующего: " << '\n' << "> " << processing(A, B, size);
-	extern int k, * positions, j;
-	//for (int i = 0; i < j; ++i)
-	//	cout << positions[i] << " ";
-	if (j) {
-		cout<<'\n' << "Позиции элементов, которые меньше предыдущего но большу последующего: " << '\n' << "> ";
-		for (int i = 0; i < j; ++i)
-			cout << positions[i] << " ";
-	}
+	extern int k;
 	cout<<'\n' << "Массив, который состоит из положительных четных элементов" << '\n' << "> ";
 	for (int i = 0; i < k; ++i)
 		cout << B[i] << " ";
