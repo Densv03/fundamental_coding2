@@ -2,7 +2,7 @@
 #include<clocale>
 #include<iomanip>
 #include<Windows.h>
-#include"head.h"
+#include"func.h"
 using namespace std;
 /*
 TYPE==1 -> работа с двумерным массивом как с одномерным
@@ -12,6 +12,7 @@ TYPE==2 -> работа с двумерным массивом как с дву�
 int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+
 	int n, counter = 1, k, shift = 0;
 	cout << "Введите размер массива: ";
 	cin >> n;

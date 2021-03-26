@@ -49,7 +49,7 @@ int** two_dimensional_arr(int size) {
 	int n = size, counter = 1, shift = 0;
 	A = new int* [n];
 	for (int i = 0; i < n; ++i)
-		A[i] = new int[n];
+		*(A + i) = new int[n];
 	if (n % 2)
 		*(*(A + n / 2) + n / 2) = n * n;
 	// General cycle

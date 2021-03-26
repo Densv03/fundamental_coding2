@@ -1,4 +1,5 @@
-﻿#include<string>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include<string>
 #include<iostream>
 #include<ctime>
 #include<Windows.h>
@@ -8,11 +9,12 @@ int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	srand(time(0));
-	char s[N];
+	char* s = new char[N];
 	int checker, size;
 	char symbol;
 	cout << "Введите строку: " << endl << "> ";
-	cin >> s;
+	scanf("%s", s);
+	//cin >> s;
 	char* pointer;
 	pointer = s;
 	while (*s != *(s+ strlen(s) - 1) || strlen(s)==1) {
