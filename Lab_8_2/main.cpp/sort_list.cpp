@@ -2,8 +2,9 @@
 #include<iostream>
 using namespace std;
 void sort_list(struct Link* head) {
-	Link* temp, cur;
-	while (head != NULL) {
-
+	int temp = head->data;
+	while (head != NULL){
+		if (temp > head->data)
+			temp = head->data;
 	}
 }
