@@ -24,14 +24,14 @@ int main(void) {
 		scanf_s("%d", &choice);
 		if (choice == 1 || choice == 8) what = true;
 		switch (choice) {
-		case(1): head = create();
+		case(1): head = create_list();
 			break;
 		case(2):
 			if (head == NULL) {
 				printf("There's no structure");
 				break;
 			}
-			print(head);
+			print_list(head);
 			break;
 		case(3):
 			if (head == NULL) {
@@ -39,7 +39,7 @@ int main(void) {
 				break;
 			}
 			else
-				search(head);
+				search_items(head);
 			break;
 		case(4):
 			printf("Enter number of inserted element: ");
@@ -54,7 +54,7 @@ int main(void) {
 			scanf_s("%d", &tt.temperature);
 			printf("Viscosity: ");
 			scanf_s("%f", &tt.viscosity);
-			head = ADD(el, tt, head);
+			head = add_item(el, tt, head);
 			break;
 		case(5):
 			if (head == NULL) {
@@ -64,7 +64,7 @@ int main(void) {
 			else {
 				printf("Enter number of deleted element: ");
 				scanf_s("%d", &el);
-				head = del(el, head);
+				head = delete_item(el, head);
 			}
 			break;
 		case(6):
@@ -73,7 +73,7 @@ int main(void) {
 				break;
 			}
 			else
-				head = sort(head);
+				head = sort_list(head);
 			break;
 		case(7):
 			if (head == NULL) {
@@ -81,10 +81,10 @@ int main(void) {
 				break;
 			}
 			else
-				addfile(head);
+				record_list_to_file(head);
 			break;
 		case(8):
-			head = CreateFromFile();
+			head = create_list_from_file();
 			break;
 
 		case(9):

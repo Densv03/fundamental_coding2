@@ -19,13 +19,13 @@ struct List {
 	float viscosity;
 };
 
-struct List* create(void);
-void print(List* head);
-int search(List* head);
-struct List* ADD(int el, List tt, List* head);
-struct List* del(int el, List* head);
-struct List* sort(List* head);
-void addfile(List* head);
-struct List* CreateFromFile();
+struct List* create_list(void);
+void print_list(List* head);
+int search_items(List* head);
+struct List* add_item(int el, List tt, List* head);
+struct List* delete_item(int el, List* head);
+struct List* sort_list(List* head);
+void record_list_to_file(List* head);
+struct List* create_list_from_file();
 
 #endif

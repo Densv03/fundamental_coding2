@@ -139,8 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="add_item.cpp" />
+    <ClCompile Include="create_list.cpp" />
+    <ClCompile Include="create_list_from_file.cpp" />
+    <ClCompile Include="delete_item.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="print_list.cpp" />
+    <ClCompile Include="record_list_to_file.cpp" />
+    <ClCompile Include="search_items.cpp" />
+    <ClCompile Include="sort_list.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />
