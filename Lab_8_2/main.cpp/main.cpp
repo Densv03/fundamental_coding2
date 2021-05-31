@@ -1,76 +1,101 @@
-﻿#include<iostream>
-#include<Windows.h>
-#include<ctime>
-#include"functions.h"
-using namespace std;
-int main() {
+﻿#include "functions.h"
+
+int main(void) {
+
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+	int choice, el;
+	struct List* head = NULL;
+	List tt;
+	bool what = false;
 
-	srand(time(0));
-
-	struct Link* head = nullptr, * m_head = nullptr;
-	int data;
 	while (true) {
-		cout << "0. Выйти из программы" << endl;
-		cout << "1. Создать список" << endl;
-		cout << "2. Напечатать список" << endl;
-		cout << "3. Поиск по критерию" << endl;
-		cout << "4. Добавление элемента в любое место" << endl;
-		cout << "5. Удаление любого элемента" << endl;
-		cout << "6. Отсортировать список" << endl;
-		cout << "7. Записать новый список в файл" << endl;
-		cout << "8. Напечатать список из файла" << endl;
-		cout << "Введите номер действия" << endl << "> ";
-		int checker, data;
-		cin >> checker;
-		while (checker < 0 || checker>8) {
-			cout << "Вы ввели некорректное значение. Попробуйте ещё раз: ";
-			cin >> checker;
-		}
-		if (!checker)
+
+		printf("1 - Создание списка\n");
+		printf("2 - Печать спика\n");
+		printf("3 - Поиск по критерию (осуществить выбор критерия)\n");
+		printf("4 - Добавление элемента (в любое заданное место)\n");
+		printf("5 - Удаление любого элемента\n");
+		printf("6 - Сортировка\n");
+		printf("7 - Запись списка в файл \n");
+		printf("8 - Создание нового списка из файла \n");
+		printf("9 - Выход из программы\n");
+		printf("> ");
+		scanf_s("%d", &choice);
+		if (choice == 1 || choice == 8) what = true;
+		switch (choice) {
+		case(1): head = create();
+			break;
+		case(2):
+			if (head == NULL) {
+				printf("There's no structure");
+				break;
+			}
+			print(head);
+			break;
+		case(3):
+			if (head == NULL) {
+				printf("There's no structure");
+				break;
+			}
+			else
+				search(head);
+			break;
+		case(4):
+			printf("Enter number of inserted element: ");
+			scanf_s("%d", &el);
+			printf("Enter inserting meanings: ");
+			printf("Name: ");
+			scanf_s("%s", tt.name, 10);
+			setbuf(stdin, NULL);
+			printf("Num: ");
+			scanf_s("%d", &tt.num);
+			printf("Temperature: ");
+			scanf_s("%d", &tt.temperature);
+			printf("Viscosity: ");
+			scanf_s("%f", &tt.viscosity);
+			head = ADD(el, tt, head);
+			break;
+		case(5):
+			if (head == NULL) {
+				printf("There's no structure\n");
+				break;
+			}
+			else {
+				printf("Enter number of deleted element: ");
+				scanf_s("%d", &el);
+				head = del(el, head);
+			}
+			break;
+		case(6):
+			if (head == NULL) {
+				printf("There's no structure\n");
+				break;
+			}
+			else
+				head = sort(head);
+			break;
+		case(7):
+			if (head == NULL) {
+				printf("There's no structure\n");
+				break;
+			}
+			else
+				addfile(head);
+			break;
+		case(8):
+			head = CreateFromFile();
+			break;
+
+		case(9):
 			return 0;
-		if (checker == 1) {
-			head = nullptr;
-			cout << "Введите элементы (чтобы закончить ввод, введите -100000): " << endl;
-			while (cin >> data) {
-				if (data == -100000)
-					break;
-				add_to_end(&head, data);
-			}
-		}
-		if (checker == 2) {
-			print_list(head);
-		}
-		if (checker == 3) {
 
-		}
-		if (checker == 4) {
-			int position;
-			cout << "Введите элемент, который хотите добавить: ";
-			cin >> data;
-			cout << "Введите номер элемента, после которого хотите добавить элемент: ";
-			cin >> position;
-			while (position < 1 || position>count_elements(head)) {
-				cout << "Вы ввели некорректное значение. Повторите ввод ещё раз: ";
-				cin >> position;
-			}
-			insert_after(head, data, position - 1);
-		}
-		if (checker == 5) {
-			int position;
-			cout << "Введите номер элемента, который нужно удалить: ";
-			cin >> position;
-			delete_element(&head, position-1);
-		}
-		if (checker == 6) {
-
-		}
-		if (checker == 7) {
-
-		}
-		if (checker == 8) {
-
+		default:
+			system("cls");
+			printf("Incorrect number\n");
+			break;
 		}
 	}
+	free(head);
+	return 0;
 }

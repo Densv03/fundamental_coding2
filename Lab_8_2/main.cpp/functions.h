@@ -1,13 +1,31 @@
-#ifndef func
-#define func
-struct Link {
-	int data;
-	Link* next;
+#pragma once
+#ifndef XT
+#define XT
+
+#define  _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include "windows.h"
+#include <time.h>
+#include <conio.h>
+#include <malloc.h>
+
+using namespace std;
+
+struct List {
+	char name[10];
+	List* next = NULL;
+	int num;
+	int temperature;
+	float viscosity;
 };
-void add_to_end(Link**, int);
-void print_list(Link*);
-void insert_after(Link*, int, int);
-int count_elements(Link*);
-void delete_element(Link**, int);
-void sort_list(Link*);
+
+struct List* create(void);
+void print(List* head);
+int search(List* head);
+struct List* ADD(int el, List tt, List* head);
+struct List* del(int el, List* head);
+struct List* sort(List* head);
+void addfile(List* head);
+struct List* CreateFromFile();
+
 #endif

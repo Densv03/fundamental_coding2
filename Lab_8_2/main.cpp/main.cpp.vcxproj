@@ -139,13 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="add_to_end.cpp" />
-    <ClCompile Include="count_elements.cpp" />
-    <ClCompile Include="delete_element.cpp" />
-    <ClCompile Include="insert_after.cpp" />
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="print_list.cpp" />
-    <ClCompile Include="sort_list.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />
