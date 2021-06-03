@@ -8,30 +8,24 @@ int main(void) {
 	List tt;
 	bool what = false;
 	struct List* head = NULL, * tail = NULL;
-
-	while (true)
-	{
-
-		printf("1 - Create list\n");
-		printf("2 - Print from the very begining\n");
-		printf("3 - Print from the end\n");
-		printf("4 - Find element from the very begining\n");
-		printf("5 - Find element from the end\n");
-		printf("6 - Add element (in any place)\n");
-		printf("7 - Delete any element\n");
-		printf("8 - Sort\n");
-		printf("9 - Запись списка в файл \n");
-		printf("10 - Создание нового списка из файла \n");
-		printf("11 - Выход из программы\n");
+	while (true){
+		printf("1 - Создать спискок\n");
+		printf("2 - Печать списка с начала\n");
+		printf("3 - Печать списка с конца\n");
+		printf("4 - Поиск элементов по критерию с начала\n");
+		printf("5 - Поиск элементов по критерию с конца\n");
+		printf("6 - Добавить элемент в любое место\n");
+		printf("7 - Удалить элемент\n");
+		printf("8 - Отсортировать список\n");
+		printf("9 - Записать список в файл \n");
+		printf("10 - Создать новый список из файла\n");
+		printf("11 - Выйти из программы\n");
 		printf(">> ");
-
-
 		scanf_s("%d", &choice);
 		if (choice == 1 || choice == 8) what = true;
 		switch (choice) {
 		case(1): create_list(head, tail);
 			break;
-
 		case(2):
 			if (head == NULL) {
 				printf("Структуры не существует!!!\n\n");
@@ -39,7 +33,6 @@ int main(void) {
 			}
 			print_list(head, head, tail); 
 			break;
-
 		case(3):
 			if(tail == NULL) {
 				printf("Структуры не существует!!!\n\n");
@@ -47,7 +40,6 @@ int main(void) {
 			}
 			print_list(tail, head, tail);
 			break;
-
 		case(4):
 			if (head == NULL) {
 				printf("Структуры не существует!!!\n\n");
@@ -56,7 +48,6 @@ int main(void) {
 			else
 				search_items_from_begin(head, tail);
 			break;
-
 		case(5):
 			if (head == NULL) {
 				printf("Структуры не существует!!!\n\n");
@@ -80,7 +71,6 @@ int main(void) {
 			scanf_s("%f", &tt.viscosity);
 			add_item(el, tt, head, tail);
 			break;
-
 		case(7):
 			if (head == NULL) {
 				printf("Структуры не существует!!!\n\n");
@@ -92,7 +82,6 @@ int main(void) {
 				delete_item(el, head, tail);
 			}
 			break;
-
 		case(8):
 			if (head == NULL) {
 				printf("Структуры не существует!!!\n\n");
@@ -101,7 +90,6 @@ int main(void) {
 			else
 				sort_list(head, tail);
 			break;
-
 		case(9):
 			if (head == NULL) {
 				printf("Структуры не существует!!!\n\n");
@@ -110,25 +98,20 @@ int main(void) {
 			else
 				record_list_to_file(head, tail);
 			break;
-
 		case(10): 
 			head = NULL;
 			tail = NULL;
 			create_list_from_file(head, tail);
 			break;
-
 		case(11):
 			printf("Выход\n");
 			return 0;
-
 		default:
 			system("cls");
 			printf("Неверное число\n");
 			break;
 		}
 	}
-
 	free(head);
 	return 0;
 }
-
