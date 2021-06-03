@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{526b2e87-0841-4928-9441-718ae8a2a523}</ProjectGuid>
-    <RootNamespace>maincpp</RootNamespace>
+    <ProjectGuid>{76fcb192-ba4a-46d3-95fc-d6eabde92de5}</ProjectGuid>
+    <RootNamespace>main</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -146,11 +146,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="print_list.cpp" />
     <ClCompile Include="record_list_to_file.cpp" />
-    <ClCompile Include="search_items.cpp" />
+    <ClCompile Include="search_items_from_begin.cpp" />
+    <ClCompile Include="search_items_from_end.cpp" />
     <ClCompile Include="sort_list.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="functions.h" />
+    <ClInclude Include="fun.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

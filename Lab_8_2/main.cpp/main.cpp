@@ -89,7 +89,6 @@ int main(void) {
 
 		case(9):
 			return 0;
-
 		default:
 			system("cls");
 			printf("Incorrect number\n");

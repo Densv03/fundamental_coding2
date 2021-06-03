@@ -1,6 +1,6 @@
 #pragma once
-#ifndef XT
-#define XT
+#ifndef functions
+#define functions
 
 #define  _CRT_SECURE_NO_WARNINGS
 #include <iostream>
